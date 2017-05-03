@@ -65,7 +65,7 @@ do
                 Mysql )
                 mysql_install ;;
                 PHP )
-                php_install;;
+                php_install ;;
                 * )
                 echo -e "\033[32m usage $0 Nginx|Mysql|PHP|Help\033[0m"
         esac
