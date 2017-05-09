@@ -13,7 +13,7 @@ if [ -z $1 ];then
 fi
 
 line_num=`cat ip.txt | wc -l`
-rm -rf ip.txt.swp
+rm -rf ip.txt.wsec
 i=0
 while ((i<$line_num))
 do
