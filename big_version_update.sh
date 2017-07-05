@@ -37,10 +37,10 @@ function unzip_web ()
 {
 	file=`echo $FILE |awk -F[.] '{print $2}'`
 	if [ $file == zip ];then
-		unzip $1 -d new_web
+		unzip $WEB_URL/$FILE -d $WEB_URL/new_web
 		#echo "zip"
 	elif [ $file == tar ];then
-		tar zxvf $1 -C new_web
+		tar zxvf $WEB_URL/$FILE -C $WEB_URL/new_web
 		#echo "tar"
 	else
 		echo -e "\033[32mError,There are no file types\033[0m"
@@ -64,7 +64,7 @@ function copy_conf ()
 	cp $CONF_DIR/*.conf $NEW_CONF_DIR;
 	cp $CONF_DIR/pigeon.lic $NEW_CONF_DIR;
 	cp $CONF_DIR/pigeonTags.properties $NEW_CONF_DIR;
-	cp Is1AppMarketContext.xml sessionContext.xml fulltextsearch.xml crontab.xml pigeonContext.xml IsoneSaasEngine.xml web.xml IsoneJobsContext.xml $WEB_URL/new_web/WEB-INF/.
+	cd $CONF_DIR/.. && cp Is1AppMarketContext.xml sessionContext.xml fulltextsearch.xml crontab.xml pigeonContext.xml IsoneSaasEngine.xml web.xml IsoneJobsContext.xml $WEB_URL/new_web/WEB-INF/.
 
 }
 
@@ -79,6 +79,7 @@ function stop_tomcat ()
 DATE=`date +%Y%m%d`
 function install_web ()
 {
+	cd $WEB_URL;
 	mv web web$DATE;
 	mv new_web web
 }
